@@ -12,13 +12,39 @@ END
 PROGRAM GoTo(TheDestinationFloor):
 
     IF the TheCurrentFloor != TheDestinationFloor:  
-        IF TheDestinationFloor > TheCurrentFloor:
-            WHILE TheCurrentFloor != TheDestinationFloor:
-                TheCurrentFloor = TheCurrentFloor + 1
+        IF somebody requests the elevator on the FloorNumber while on its way
+            IF it has the same direction,  
+                IF the FloorNumber is closer
+                    The elevator GoTo(FloorNumber)
+            ELSE, 
+                The elevator goes on normally to the destination and opens.  
+                After it's closed, goes to the person that requested in earlier. 
+                IF somebody enters the elevator and presses a different number
+                    IF the TheDestinationFloor number is on its way, 
+                        the elevator stops
+                        opens there
+                        closes
+                        Goes on to the destination
+                        opens there
+                        closes
+                        continues to the previews destination
+                    ELSE,
+                        continues the normal flow
+                        then continues on to the last TheDestinationFloor number typed
+                    END
+                ELSE,
+                    it goes on with the normal flow
+                END
             END
-        ELSE,
-            WHILE TheCurrentFloor != TheDestinationFloor:
-                TheCurrentFloor = TheCurrentFloor - 1
+        ELSE
+            IF TheDestinationFloor > TheCurrentFloor:
+                WHILE TheCurrentFloor != TheDestinationFloor:
+                    TheCurrentFloor = TheCurrentFloor + 1
+                END
+            ELSE,
+                WHILE TheCurrentFloor != TheDestinationFloor:
+                    TheCurrentFloor = TheCurrentFloor - 1
+                END
             END
         END
         Stop
@@ -69,8 +95,28 @@ END
 
 ## Clarify
 Design a proper working elevator. 
-The goal of an elevator is to transport people from one TheDestinationFloor to another. Practically, three steps:
+The goal of an elevator is to transport people from one floor to another. The elevator should stop if somebody on its way calls it and it has the same direction. Otherwise, after you finish, repeat the same process.
+The "Trip" has a
+- current position;
+- destination, which can be defined:
+    - inside:
+        - pressing a number
+        - pressing stop
+    - outside
+        - pressing an arrow. 
+- direction, which could be:
+    - static,
+    - going up, or
+    - going down.
 
+First the elevator is in the current floor and is always waiting to be called. Then it is
+1. called
+2. given a destination
+3. goes to the destination
+4. before the last floor it slows down
+5. stops.
+1. the door opens and remains open for a certain time.
+1. 
 ## High-level
 - It accepts user input
 - It has sensors
