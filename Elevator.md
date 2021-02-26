@@ -17,12 +17,14 @@ PROGRAM Elevator:
 
 
 PROGRAM Press(Button):
+
     IF Button = ARROW:
         RequestedFloor = CurrentPersonFloor
         RequestedDirection
     ELSE:
         RequestedFloor
         RequestedDirection = CurrentElevatorFloor
+
 
 PROGRAM HasADirection(Something):
 
