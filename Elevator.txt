@@ -1,17 +1,19 @@
 PROGRAM Elevator:
 
-    The Elevator is in the CurrentElevatorFloor
+    The Elevator is in the *current elevator floor*
     The Person is in the CurrentPersonFloor
+
     Press(Button)
+
     IF HasADirection(Elevator) = No:
         Decide(Direction)
     ELSE:
-        IF DirectionIs(Elevator) != DirectionIs(RequestedFloor):
+        IF the direction of the Elevator is different from the direction of the RequestedFloor:
             Book(Later)
         ELSE:
-            IF the RequestedFloor is between CurrentElevatorFloor and FirstRequestedFloor:
+            IF the RequestedFloor is between *current elevator floor* and FirstRequestedFloor:
                 Book(Now)
-                Order Now from closest to furthest with the CurrentElevatorFloor
+                Order Now from closest to furthest with the *current elevator floor*
             ELSE:
                 Book(Later)
 
@@ -20,10 +22,10 @@ PROGRAM Press(Button):
 
     IF Button = ARROW:
         RequestedFloor = CurrentPersonFloor
-        RequestedDirection
+        RequestedDirection = ARROW
     ELSE:
-        RequestedFloor
-        RequestedDirection = CurrentElevatorFloor
+        RequestedFloor = Button
+        RequestedDirection = CurrentPersonFloor - *current elevator floor*
 
 
 PROGRAM HasADirection(Something):
@@ -36,7 +38,7 @@ PROGRAM HasADirection(Something):
 
 PROGRAM Decide(Direction):
 
-    IF CurrentElevatorFloor = FirstRequestedFloor
+    IF *current elevator floor* = FirstRequestedFloor
         Do nothing, keep waiting for the next command, or maybe open the door
     ELSE:
         Go(FirstRequestedFloor)
@@ -44,18 +46,18 @@ PROGRAM Decide(Direction):
 
 PROGRAM Go(SomeFloor):
 
-    IF CurrentElevatorFloor < SomeFloor:
-        DirectionIs(Elevator) = UP
-        While CurrentElevatorFloor != SomeFloor:
-            IF |CurrentElevatorFloor - SomeFloor| = 1:
+    IF *current elevator floor* < SomeFloor:
+        direction of the Elevator is UP
+        While *current elevator floor* != SomeFloor:
+            IF |*current elevator floor* - SomeFloor| = 1:
                 SLOW
-            DECREASE CurrentElevatorFloor number by 1
+            DECREASE *current elevator floor* number by 1
     ELSE,
-        DirectionIs(Elevator) = DOWN
-        While CurrentElevatorFloor != SomeFloor:
-            IF |CurrentElevatorFloor - SomeFloor| = 1:
+        direction of the Elevator is DOWN
+        While *current elevator floor* != SomeFloor:
+            IF |*current elevator floor* - SomeFloor| = 1:
                 SLOW
-            INCREASE CurrentElevatorFloor number by 1
+            INCREASE *current elevator floor* number by 1
 
 
 Book(DestinationFloor, When):
