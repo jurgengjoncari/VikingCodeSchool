@@ -1,7 +1,7 @@
 ### PROGRAM _Elevator_
 The _Elevator_ is in the _Current Elevator Floor_  
 The _Person_ is in the _Current Person Floor_  
-1. __Press__ _Button_  
+1. __Press__ _Button_
 1. The  _Elevator_ __Has A Direction__? 
     1. IF FALSE, THEN __Decide__ _Direction_  
     1. ELSE:  
@@ -43,5 +43,5 @@ The _Person_ is in the _Current Person Floor_
             1. _Current Elevator Floor_ <- _Curent Elevator Floor_ + 1
 
 ### PROGRAM _When_ __Book__ _DestinationFloor_
-1. IF _When_ = _Now_ APPEND floor to _Now_ list
-1. ELSE, IF _When_ = _Later_, APPEND floor to _Later_ list
+1. IF _When_ = _Now_, APPEND floor to _Now_ list.
+1. ELSE, IF _When_ = _Later_, APPEND floor to _Later_ list.
