@@ -5,11 +5,13 @@ The _Person_ is in the _Current Person Floor_
 1. The  _Elevator_ __Has A Direction__? 
     1. IF FALSE, THEN __Decide__ _Direction_  
     1. ELSE:  
-        1. IF the direction of the Elevator != the direction of the _Requested Floor_, __Book__ __Later__  
-        1. ELSE, IF the _Requested Floor_ is between _Current Elevator Floor_ and _First Requested Floor_:
-            1. __Book__ _Now_  
-            1. __Order__ _Now_ from closest to furthest with the _Current Elevator Floor_
-        1. ELSE, __Book__ __Later__
+        1. Is the direction of the Elevator != the direction of the _Requested Floor_? 
+            1. IF TRUE, __Book__ __Later__  
+            1. ELSE, 
+                1. IF the _Requested Floor_ is between _Current Elevator Floor_ and _First Requested Floor_:
+                    1. __Book__ _Now_  
+                    1. __Order__ _Now_ from closest to furthest with the _Current Elevator Floor_
+                1. ELSE, __Book__ __Later__
 
 ### PROGRAM __Press__ _Button_
 1. _Button_ = ARROW?
@@ -32,13 +34,16 @@ The _Person_ is in the _Current Person Floor_
 
 ### PROGRAM __Go to__ _SomeFloor_
 1. IS _Current Elevator Floor_ < _SomeFloor_?
-    1. IF TRUE, direction of the Elevator is UP
-        1. While _Current Elevator Floor_ != _SomeFloor_:
-            1. IF |_Current Elevator Floor_ - _SomeFloor_| = 1, SLOW DOWN
-            1. _Current Elevator Floor_ <- _Current Elevator Floor_ - 1
+    1. IF TRUE, THEN direction of the Elevator is UP
+        1. _Current Elevator Floor_ != _SomeFloor_?
+            1. IF TRUE:
+                1. IF |_Current Elevator Floor_ - _SomeFloor_| = 1, SLOW DOWN
+                1. _Current Elevator Floor_ <- _Current Elevator Floor_ - 1
+                1. Go to step 1. 1. 1.
+            1. ELSE, go to step 1.2.
     1. ELSE,
         1. direction of the Elevator is DOWN
-        1. While _Current Elevator Floor_ != _SomeFloor_:
+        1. _Current Elevator Floor_ != _SomeFloor_?
             1. IF |_Current Elevator Floor_ - _SomeFloor_| = 1, SLOW DOWN
             1. _Current Elevator Floor_ <- _Curent Elevator Floor_ + 1
 
